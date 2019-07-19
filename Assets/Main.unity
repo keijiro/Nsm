@@ -962,7 +962,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: libndi is not ready
 --- !u!222 &1590606018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1157,11 +1157,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: libndi is not ready
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

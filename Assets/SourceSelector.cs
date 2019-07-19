@@ -60,6 +60,7 @@ namespace Nsm
         {
             var go = _dropdown.gameObject;
             go.SetActive(!go.activeSelf);
+            Cursor.visible = go.activeSelf;
         }
     }
 }
