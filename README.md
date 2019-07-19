@@ -17,7 +17,7 @@ System requirements
 -------------------
 
 - Linux desktop system with Vulkan support
-- NDI SDK
+- NDI SDK 3.8
 
 Nsm requires libndi.so included in the NDI SDK. To install it, download the SDK
 package from the [NDI SDK] site, then run [install-ndi.sh] as root in the
