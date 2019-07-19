@@ -23,7 +23,12 @@ Nsm requires libndi.so included in the NDI SDK. To install it, download the SDK
 package from the [NDI SDK] site, then run [install-ndi.sh] as root in the
 extracted SDK directory.
 
-<!--4567890123456789012345678901234567890123456789012345678901234567890123456-->
-
 [NDI SDK]: https://www.newtek.com/ndi/sdk/
 [install-ndi.sh]: https://gist.github.com/keijiro/0cd095b54e5c2846fb683ad48e8292d2
+
+Installation
+------------
+
+Prebuild binaries are vailable from the [Releases] page.
+
+[Releases]: https://github.com/keijiro/Nsm/releases
