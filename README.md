@@ -23,3 +23,10 @@ Installation
 Prebuild binaries are vailable from the [Releases] page.
 
 [Releases]: https://github.com/keijiro/Nsm/releases
+
+How to use
+----------
+
+- Select a NDI source from the drop-down menu.
+- You can hide the drop-down menu by clicking an empty space of the screen.
+  Click again to make the menu reappear.
