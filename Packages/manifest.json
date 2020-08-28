@@ -1,13 +1,18 @@
 {
-  "dependencies": {
-    "com.unity.package-manager-ui": "2.1.2",
-    "jp.keijiro.klak.ndi": "https://github.com/keijiro/KlakNDI.git#upm",
-    "com.unity.modules.ui": "1.0.0"
-  },
-  "lock": {
-    "jp.keijiro.klak.ndi": {
-      "hash": "2489b981f9c740977e1db7d9601e6b52b472ba03",
-      "revision": "upm"
+  "scopedRegistries": [
+    {
+      "name": "Unity NuGet",
+      "url": "https://unitynuget-registry.azurewebsites.net",
+      "scopes": [ "org.nuget" ]
+    },
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [ "jp.keijiro" ]
     }
+  ],
+  "dependencies": {
+    "jp.keijiro.klak.ndi": "1.0.4",
+    "com.unity.ugui": "1.0.0"
   }
 }
