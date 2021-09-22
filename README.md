@@ -3,26 +3,32 @@ Nsm - NDI Simple Monitor for Linux
 
 ![screenshot](https://i.imgur.com/k1aF4J0l.jpg)
 
-**Nsm** is a small utility that receives a [NDI] video stream and simply show
-it with a full screen view.
+**Nsm** is a small utility app that receives an [NDI] video stream and displays
+it with a full-screen view.
 
 [NDI]: https://www.newtek.com/ndi/
 
-I made this application simply because NewTek doesn't provide NDI Tools for
-Linux platforms. I recommend using the official NDI Tools on other desktop
-platforms (Windows/macOS).
+I developed this app simply because NewTek doesn't provide NDI Monitor software
+for some platforms (Linux and mobiles).
 
 System requirements
 -------------------
 
+Nsm runs on the following systems:
+
 - x86-64 based Linux system with Vulkan support
+- arm64 Android devices with Vulkan support
+- 64-bit iOS devices with Metal support
 
 Installation
 ------------
 
-Prebuild binaries are vailable from the [Releases] page.
+Pre-built Linux binaries are available on the [Releases] page.
 
 [Releases]: https://github.com/keijiro/Nsm/releases
+
+For other platforms (Android/iOS), there is no pre-built app. You have to
+install Unity and manually build the project.
 
 How to use
 ----------
