@@ -1,5 +1,5 @@
-Nsm - NDI Simple Monitor for Linux
-==================================
+Nsm - NDI Simple Monitor
+========================
 
 ![screenshot](https://i.imgur.com/k1aF4J0l.jpg)
 
