@@ -11,19 +11,20 @@ Shader "Nsm/Monitor"
 
     sampler2D _MainTex;
 
-    float4 Vertex(float4 position : POSITION) : SV_POSITION
+    void Vertex(float4 position : POSITION,
+                float2 texCoord : TEXCOORD0,
+                out float4 outPosition : SV_Position,
+                out float2 outTexCoord : TEXCOORD0)
     {
-        return UnityObjectToClipPos(position);
+        outPosition = UnityObjectToClipPos(position);
+        outTexCoord = texCoord;
     }
 
-    float4 Fragment(float4 position : SV_POSITION) : SV_Target
+    float4 Fragment(float4 position : SV_Position,
+                    float2 texCoord : TEXCOORD0) : SV_Target
     {
-        // UV coordinates from clip space position
-        float2 uv = position.xy * (_ScreenParams.zw - 1);
-        uv.y = 1 - uv.y;
-
         // Color sample
-        float4 s = tex2D(_MainTex, uv);
+        float4 s = tex2D(_MainTex, texCoord);
 
         // Checkerboard pattern
         const float checker_size = 40;
