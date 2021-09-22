@@ -1,18 +1,16 @@
 {
   "scopedRegistries": [
     {
-      "name": "Unity NuGet",
-      "url": "https://unitynuget-registry.azurewebsites.net",
-      "scopes": [ "org.nuget" ]
-    },
-    {
       "name": "Keijiro",
       "url": "https://registry.npmjs.com",
-      "scopes": [ "jp.keijiro" ]
+      "scopes": [
+        "jp.keijiro"
+      ]
     }
   ],
   "dependencies": {
-    "jp.keijiro.klak.ndi": "1.0.4",
-    "com.unity.ugui": "1.0.0"
+    "com.unity.ide.visualstudio": "2.0.11",
+    "com.unity.ugui": "1.0.0",
+    "jp.keijiro.klak.ndi": "2.0.0"
   }
 }
