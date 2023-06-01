@@ -18,7 +18,10 @@ public sealed class SourceSelector : MonoBehaviour
     // three child objects only while it's opened.
     bool IsOpened => _dropdown.transform.childCount > 3;
 
-    void Start() => _receiver = GetComponent<NdiReceiver>();
+    void Start() {
+        _receiver = GetComponent<NdiReceiver>();
+        OnClickEmptyArea();
+    }
 
     void Update()
     {
@@ -29,14 +32,17 @@ public sealed class SourceSelector : MonoBehaviour
         _sourceNames = NdiFinder.sourceNames.ToList();
 
         // Currect selection
-        var index = _sourceNames.IndexOf(_receiver.ndiName);
+        var ndiName = PlayerPrefs.GetString("ndiName");
+        if (_receiver.ndiName != ndiName) {
+            _receiver.ndiName = ndiName;
+        }
+        var index = _sourceNames.IndexOf(ndiName);
 
         // Append the current name to the list if it's not found.
-        if (index < 0)
-        {
+        /*if (index < 0) {
             index = _sourceNames.Count;
-            _sourceNames.Add(_receiver.ndiName);
-        }
+            _sourceNames.Add(ndiName);
+        }*/
 
         // Disable the callback while updating the menu options.
         _disableCallback = true;
@@ -55,8 +61,9 @@ public sealed class SourceSelector : MonoBehaviour
     {
         if (_disableCallback) return;
         _receiver.ndiName = _sourceNames[value];
+        PlayerPrefs.SetString("ndiName", _receiver.ndiName);
+        PlayerPrefs.Save();
     }
-
     public void OnClickEmptyArea()
     {
         var go = _dropdown.gameObject;
