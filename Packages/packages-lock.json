@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.ugui": {
-      "version": "1.0.0",
+      "version": "2.0.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -10,19 +10,13 @@
       }
     },
     "jp.keijiro.klak.ndi": {
-      "version": "2.0.0",
+      "version": "2.1.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.screencapture": "1.0.0"
       },
       "url": "https://registry.npmjs.com"
-    },
-    "com.unity.modules.androidjni": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
     },
     "com.unity.modules.imageconversion": {
       "version": "1.0.0",
