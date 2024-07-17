@@ -1,68 +1,86 @@
+using Unity.Properties;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Linq;
 using Klak.Ndi;
+using Cursor = UnityEngine.Cursor;
 
 namespace Nsm {
 
 public sealed class SourceSelector : MonoBehaviour
 {
-    [SerializeField] Dropdown _dropdown = null;
+    #region Data source accessor for UI
 
-    NdiReceiver _receiver;
-    List<string> _sourceNames;
-    bool _disableCallback;
+    [CreateProperty]
+    public List<string> SourceList
+      => NdiFinder.sourceNames.DefaultIfEmpty(NoSource).ToList();
 
-    // HACK: Assuming that the dropdown has more than
-    // three child objects only while it's opened.
-    bool IsOpened => _dropdown.transform.childCount > 3;
+    #endregion
 
-    void Start() => _receiver = GetComponent<NdiReceiver>();
+    #region External component references
+
+    NdiReceiver Receiver
+      => GetComponent<NdiReceiver>();
+
+    VisualElement UIRoot
+      => GetComponent<UIDocument>().rootVisualElement;
+
+    DropdownField UISelector
+      => UIRoot.Q<DropdownField>("selector");
+
+    VisualElement UIMonitor
+      => UIRoot.Q<VisualElement>("monitor");
+
+    #endregion
+
+    #region Private members
+
+    const string PrefKey = "NDI Source Name";
+    const string NoSource = "(No NDI source found)";
+
+    #endregion
+
+    #region UI callbacks
+
+    void ToggleUI()
+      => Cursor.visible = (UISelector.visible ^= true);
+
+    void SelectSource(string name)
+    {
+        if (name == NoSource)
+        {
+            // Is it actually safe to change the index in the callback?
+            // It looks a little bit dangerous.
+            UISelector.index = -1;
+        }
+        else
+        {
+            Receiver.ndiName = name;
+            PlayerPrefs.SetString(PrefKey, name);
+        }
+    }
+
+    #endregion
+
+    #region MonoBehaviour
+
+    void Start()
+    {
+        UIRoot.AddManipulator(new Clickable(ToggleUI));
+
+        UISelector.dataSource = this;
+        UISelector.RegisterValueChangedCallback(e => SelectSource(e.newValue));
+
+        if (PlayerPrefs.HasKey(PrefKey))
+            SelectSource(UISelector.value = PlayerPrefs.GetString(PrefKey));
+    }
 
     void Update()
-    {
-        // Do nothing if the menu is opened.
-        if (IsOpened) return;
+      => UIMonitor.style.backgroundImage
+           = Background.FromRenderTexture(Receiver.texture);
 
-        // NDI source name retrieval
-        _sourceNames = NdiFinder.sourceNames.ToList();
-
-        // Currect selection
-        var index = _sourceNames.IndexOf(_receiver.ndiName);
-
-        // Append the current name to the list if it's not found.
-        if (index < 0)
-        {
-            index = _sourceNames.Count;
-            _sourceNames.Add(_receiver.ndiName);
-        }
-
-        // Disable the callback while updating the menu options.
-        _disableCallback = true;
-
-        // Menu option update
-        _dropdown.ClearOptions();
-        _dropdown.AddOptions(_sourceNames);
-        _dropdown.value = index;
-        _dropdown.RefreshShownValue();
-
-        // Resume the callback.
-        _disableCallback = false;
-    }
-
-    public void OnChangeValue(int value)
-    {
-        if (_disableCallback) return;
-        _receiver.ndiName = _sourceNames[value];
-    }
-
-    public void OnClickEmptyArea()
-    {
-        var go = _dropdown.gameObject;
-        go.SetActive(!go.activeSelf);
-        Cursor.visible = go.activeSelf;
-    }
+    #endregion
 }
 
 } // namespace Nsm
