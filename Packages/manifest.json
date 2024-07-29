@@ -10,6 +10,7 @@
   ],
   "dependencies": {
     "jp.keijiro.klak.ndi": "2.1.2",
+    "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.uielements": "1.0.0"
   }
 }
