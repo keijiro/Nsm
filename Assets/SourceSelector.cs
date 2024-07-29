@@ -74,6 +74,10 @@ public sealed class SourceSelector : MonoBehaviour
 
         if (PlayerPrefs.HasKey(PrefKey))
             SelectSource(UISelector.value = PlayerPrefs.GetString(PrefKey));
+
+#if UNITY_IOS && !UNITY_EDITOR
+        Application.targetFrameRate = 60;
+#endif
     }
 
     void Update()
