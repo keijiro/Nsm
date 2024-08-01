@@ -9,7 +9,8 @@
     }
   ],
   "dependencies": {
-    "jp.keijiro.klak.ndi": "2.1.2",
+    "com.unity.toolchain.macos-arm64-linux-x86_64": "2.0.3",
+    "jp.keijiro.klak.ndi": "2.1.3",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.uielements": "1.0.0"
   }
