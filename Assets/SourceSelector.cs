@@ -8,19 +8,6 @@ using Cursor = UnityEngine.Cursor;
 
 namespace Nsm {
 
-sealed class ArgsParser
-{
-    public bool HasSource => !string.IsNullOrEmpty(Source);
-    public string Source { get; private set; }
-
-    public ArgsParser()
-    {
-        var args = System.Environment.GetCommandLineArgs();
-        for (var i = 1; i < args.Length - 1; i++)
-            if (args[i] == "--source") Source = args[i + 1];
-    }
-}
-
 public sealed class SourceSelector : MonoBehaviour
 {
     #region Data source accessor for UI
@@ -85,11 +72,14 @@ public sealed class SourceSelector : MonoBehaviour
         UISelector.dataSource = this;
         UISelector.RegisterValueChangedCallback(e => SelectSource(e.newValue));
 
-        var args = new ArgsParser();
+        var args = new ArgParser();
+
         if (args.HasSource)
             SelectSource(UISelector.value = args.Source);
         else if (PlayerPrefs.HasKey(PrefKey))
             SelectSource(UISelector.value = PlayerPrefs.GetString(PrefKey));
+
+        if (args.HideUI) ToggleUI();
 
 #if UNITY_IOS && !UNITY_EDITOR
         Application.targetFrameRate = 60;
